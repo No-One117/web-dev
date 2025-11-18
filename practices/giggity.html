@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Color Theory Boxes</title>
+  <style>
+    .box {
+      width: 150px;
+      height: 150px;
+      margin: 10px;
+      display: inline-block;
+      text-align: center;
+
+      font-weight: bold;
+      font-size: 1.1em;
+      border: 3px solid black;
+    }
+    #complementary {
+      background: orange;
+      color: blue;
+      border-color: blue;
+    }
+    #analogous {
+      background: yellow;
+      color: green;
+      border-color: lime;
+    }
+    #triadic {
+      background: red;
+      color: blue;
+      border-color: yellow;
+    }
+  </style>
+</head>
+<body>
+  <div class="box" id="complementary"><p>complementary, colors that are completely opposite from eachother</p></div>
+  <div class="box" id="analogous"><p>analogous, colors that are right next to each other</p></div>
+  <div class="box" id="triadic"><p>triadic, colors that make a triangle</p></div>
+</body>
+</html>

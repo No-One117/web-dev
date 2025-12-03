@@ -1,8 +1,10 @@
-{% extends "base.html" %}
-{% block content %}Home - flask{% endblock %}
-{% block body %}
-
-
+<!DOCTYPE html>
+<html lan="en">
+    <head>
+            <title>{% block content%}{%endblock %}</title>
+            <meta charset="UTF-8">
+    </head>
+    <body>
         <h1>Spinning Cockroach</h1>
 
         <p>I like the spinning cockroach because hes a silly goose</p>
@@ -22,5 +24,12 @@
         <input type="text" id="name" name="name" required>
         <br>
         <input type="submit" value="Submit">
-    </form>
-{% endblock %}
+         <div id="bar">
+            <h2><em></em></h2>
+            <a href="/">home?</a>
+            <a hreF="/contact">contact?</a>
+            <a href="/about">about?</a>
+         </div>
+         {% block body %}{% endblock %}
+    </body>\
+</html>

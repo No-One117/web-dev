@@ -6,7 +6,7 @@ app = Flask(__name__)
 def home():
     if request.method == 'post':
        return redirect(url_for('about'))
-    return ""
+    return render_template('index.html')
 
 @app.route('/about')
 def about():
@@ -15,6 +15,10 @@ def about():
 @app.route('/contact')
 def contact():
     return "This is the contact page."
+
+@app.route('/user')
+def user():
+    return "this is the user page."
 
 if __name__ == '__main__':
     app.run(debug=True)

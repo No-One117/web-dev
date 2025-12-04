@@ -92,7 +92,16 @@
         a {
             color: #eab676;
         }
+
+        #hidden{
+            display:none;
+        }
     </style>
+    <script>
+        function change(){
+                document.getElementById("hidden").style.display="block";
+        }
+    </script> 
 </head>
 <body>
     <header>
@@ -160,7 +169,14 @@
                 <li><b>Leave No Trace:</b> Please stay on marked trails and respect the fragile landscape</li>
                 <li><b>Wildlife:</b> Keep a lookout for desert bighorn sheep, lizards, and ravens</li>
             </ul>
+
+            <ul id="hidden">
+                <li>hello this is a secret</a></li>
+                <li> <img src="https://cdn.getyourguide.com/img/location/5cdbec9a2253d.jpeg/99.jpg" alt="Reach Cover"></li>
+            </ul>
+
         </div>
+        <button onclick={change()}></button>
     </main>
 </body>
 </html>

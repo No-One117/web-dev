@@ -113,43 +113,34 @@
             display:none;
         }
     </style>
-
     <script>
-    
-        document.addEventListener('DOMContentLoaded', function () {
-            const img = document.querySelector('.main-img');
-            if (!img) return;
+document.addEventListener('DOMContentLoaded', function () {
+  const img = document.querySelector('.main-img');
+  if (!img) return;
 
 
-            const hoverUrl = img.getAttribute('data-hover') || 'https://upload.wikimedia.org/wikipedia/commons/1/16/Delicate_Arch_UT.jpg';
+  const hoverUrl = img.dataset.hover || 'https://upload.wikimedia.org/wikipedia/commons/1/16/Delicate_Arch_UT.jpg';
+  new Image().src = hoverUrl;
+
+  const originalUrl = img.src;
+  const setHover = (on) => { img.src = on ? hoverUrl : originalUrl; };
 
  
-            const pre = new Image();
-            pre.src = hoverUrl;
-
-            const originalUrl = img.src;
-
-
-            const swapToHover = () => { img.src = hoverUrl; };
-            const swapToOriginal = () => { img.src = originalUrl; };
-
-
-            img.addEventListener('mouseenter', swapToHover);
-            img.addEventListener('mouseleave', swapToOriginal);
+  img.tabIndex = 0;
+  img.addEventListener('mouseenter', () => setHover(true));
+  img.addEventListener('mouseleave', () => setHover(false));
+  img.addEventListener('focus', () => setHover(true));
+  img.addEventListener('blur', () => setHover(false));
+  img.addEventListener('touchstart', () => setHover(true), { passive: true });
+  img.addEventListener('touchend', () => setHover(false), { passive: true });
+});
 
 
-            img.setAttribute('tabindex', '0');
-            img.addEventListener('focus', swapToHover);
-            img.addEventListener('blur', swapToOriginal);
-
-            img.addEventListener('touchstart', swapToHover, {passive:true});
-            img.addEventListener('touchend', swapToOriginal, {passive:true});
-        });
-
-        function change(){
-            const el = document.getElementById("hidden");
-            el.style.display = (el.style.display === "block") ? "none" : "block";
-        }
+function change() {
+  const el = document.getElementById('hidden');
+  if (!el) return;
+  el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+}
     </script>
 </head>
 <body>

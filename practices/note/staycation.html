@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <title>Arches National Park Guide</title>
     <style>
         body {
@@ -57,29 +57,45 @@
             margin-bottom: 0.45em;
             line-height: 1.5;
         }
+
         img.main-img {
-            width: 98%;
-            max-width: 660px;
+            width: 90%;
+            max-width: 480px;
             height: auto;
             display: block;
             margin: 0.7em auto 1em auto;
             border-radius: 10px;
             box-shadow: 0 3px 20px #c1440e55;
+            cursor: pointer;
         }
+
         .hover-img {
             opacity: 0;
             transition: opacity 0.35s, box-shadow 0.22s;
-            max-width: 140px;
+            max-width: 100px;
+            width: 100%;
             cursor: pointer;
             border-radius: 6px;
             vertical-align: middle;
             margin-left: 0.4em;
             box-shadow: none;
+            object-fit: cover;
         }
         .hover-img:hover {
             opacity: 1;
-            box-shadow: 0 0 16px #f6c931;
+            box-shadow: 0 0 16px #be31f6;
         }
+
+        .small-img {
+            max-width: 220px;
+            width: 100%;
+            height: auto;
+            display: inline-block;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+            margin: 0.4em 0;
+        }
+
         .section-note {
             color: #b8ccff;
             font-size: 0.98em;
@@ -97,11 +113,44 @@
             display:none;
         }
     </style>
+
     <script>
+    
+        document.addEventListener('DOMContentLoaded', function () {
+            const img = document.querySelector('.main-img');
+            if (!img) return;
+
+
+            const hoverUrl = img.getAttribute('data-hover') || 'https://upload.wikimedia.org/wikipedia/commons/1/16/Delicate_Arch_UT.jpg';
+
+ 
+            const pre = new Image();
+            pre.src = hoverUrl;
+
+            const originalUrl = img.src;
+
+
+            const swapToHover = () => { img.src = hoverUrl; };
+            const swapToOriginal = () => { img.src = originalUrl; };
+
+
+            img.addEventListener('mouseenter', swapToHover);
+            img.addEventListener('mouseleave', swapToOriginal);
+
+
+            img.setAttribute('tabindex', '0');
+            img.addEventListener('focus', swapToHover);
+            img.addEventListener('blur', swapToOriginal);
+
+            img.addEventListener('touchstart', swapToHover, {passive:true});
+            img.addEventListener('touchend', swapToOriginal, {passive:true});
+        });
+
         function change(){
-                document.getElementById("hidden").style.display="block";
+            const el = document.getElementById("hidden");
+            el.style.display = (el.style.display === "block") ? "none" : "block";
         }
-    </script> 
+    </script>
 </head>
 <body>
     <header>
@@ -109,10 +158,13 @@
         <h2>Your Gateway to Utah's Famous Stone Arches</h2>
     </header>
     <div class="disclaimer">
-        <b>Visitor Note:</b> This fan-made guide is for informational purposes. Please check the <a href="https://www.nps.gov/arch/" target="_blank">official Arches National Park website</a> for the most current details, conditions, and advisories!
+        <b>Visitor Note:</b> This fan-made guide is for informational purposes. Please check the <a href="https://www.nps.gov/arch/" target="_blank" rel="noopener">official Arches National Park website</a> for the most current details, conditions, and advisories!
     </div>
     <main>
-        <img class="main-img" src="">
+        <img class="main-img"
+             src="https://upload.wikimedia.org/wikipedia/commons/f/f0/Delicate_arch_sunset.jpg"
+             alt="Delicate Arch"
+             data-hover="https://www.followmeaway.com/wp-content/uploads/2019/08/arches-national-park-hikes-delicate-arch.jpg">
 
         <div class="info-section">
             <h2>Overview</h2>
@@ -171,12 +223,12 @@
             </ul>
 
             <ul id="hidden">
-                <li>hello this is a secret</a></li>
-                <li> <img src="https://cdn.getyourguide.com/img/location/5cdbec9a2253d.jpeg/99.jpg" alt="Reach Cover"></li>
+                <li>hello this is a secret</li>
+                <li><img class="small-img" src="https://assets.simpleviewinc.com/simpleview/image/upload/c_limit,h_1200,q_75,w_1200/v1/clients/grandcountyut/archesnp_8ea6df4a-faaf-4b34-8645-d3ff76a628ff.jpg" alt="delicate arch"></li>
             </ul>
 
         </div>
-        <button onclick={change()}></button>
+        <button onclick="change()">Toggle secret</button>
     </main>
 </body>
 </html>
